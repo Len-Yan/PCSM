@@ -43,8 +43,8 @@
     <form>
     <tr th:each="tempPart : ${availparts}">
         <td th:text="${tempPart.name}">1</td>
-        <td th:text="${tempPart.price}">1</td>
-        <td th:text="${tempPart.inv}">1</td>
+        <td th:text="${tempPart.price}" style="text-align: right;">1</td>
+        <td th:text="${tempPart.inv}" style="text-align: right;">1</td>
         <td><a th:href="@{/associatepart(partID=${tempPart.id})}" class="btn btn-primary btn-sm mb-3">Add</a>
         </td>
     </tr>
@@ -63,8 +63,8 @@
         <tbody>
         <tr th:each="tempPart : ${assparts}">
             <td th:text="${tempPart.name}">1</td>
-            <td th:text="${tempPart.price}">1</td>
-            <td th:text="${tempPart.inv}">1</td>
+            <td th:text="${tempPart.price}" style="text-align: right;">1</td>
+            <td th:text="${tempPart.inv}" style="text-align: right;">1</td>
             <td><a th:href="@{/removepart(partID=${tempPart.id})}"  class="btn btn-primary btn-sm mb-3">Remove</a>
             </td>
         </tr>

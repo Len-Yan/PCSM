@@ -2,95 +2,143 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <title>My Computer Shop</title>
+
+    <style>
+        body { background-color: #f8f9fa; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .main-header { background: linear-gradient(135deg, #0d6efd 0%, #003d99 100%); color: white; padding: 2rem 0; margin-bottom: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .card { border: none; border-radius: 10px; box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); margin-bottom: 2rem; }
+        .card-header { background-color: #fff; border-bottom: 1px solid #eee; font-weight: bold; font-size: 1.25rem; padding: 1rem 1.5rem; }
+        .table thead { background-color: #f1f3f5; }
+        .btn-action { margin-right: 5px; }
+        .search-section { background-color: #fff; padding: 15px; border-radius: 8px; margin-bottom: 15px; border: 1px solid #dee2e6; }
+    </style>
 </head>
 <body>
 
+<header class="main-header">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div>
+            <h1 class="display-5 fw-bold mb-0">PC Shop - Sample</h1>
+            <p class="lead mb-0">Inventory Management System</p>
+        </div>
+        <div class="btn-group">
+            <a th:href="@{/aboutPage}" class="btn btn-outline-light">About</a>
+            <a th:href="@{/report}" class="btn btn-outline-light">Reports</a>
+            <a th:href="@{/Logout}" class="btn btn-danger">Logout</a>
+        </div>
+    </div>
+</header>
+
 <div class="container">
-    <h1>PC Shop</h1>
-    <a th:href="@{/aboutPage}" class="btn btn-primary btn-sm mb-3"> About Us </a>
-    <a th:href="@{/report}" class="btn btn-primary btn-sm mb-3"> Sale Report</a>
-    <a th:href="@{/Logout}"  class="btn btn-primary btn-sm mb-3" style="float: right;"> Logout </a>
-    <hr>
-    <h2>Components</h2>
-    <form th:action="@{/mainscreen}">
-        Filter: <input type="text" name="partkeyword" id="partkeyword" size="50" th:value="${partkeyword}" required />
-        &nbsp;
-        <input type="submit" value="Search" />
-        &nbsp;
-        <input type="button" value="Clear" id="btnClearPart" onclick="clearSearch()" />
-    </form>
-    <br><br>
-    <a th:href="@{/showFormAddInPart}" class="btn btn-primary btn-sm mb-3">Add Inhouse Part</a>
-    <a th:href="@{/showFormAddOutPart}" class="btn btn-primary btn-sm mb-3">Add Outsourced Part</a>
-    <table class="table table-bordered table-striped">
-        <thead class="thead-dark">
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Inventory</th>
-            <th>Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="tempPart : ${parts}">
-            <td th:text="${tempPart.name}">1</td>
-            <td th:text="${tempPart.price}">1</td>
-            <td th:text="${tempPart.inv}">1</td>
-            <td><a th:href="@{/showPartFormForUpdate(partID=${tempPart.id})}" class="btn btn-primary btn-sm mb-3">Update</a>
-                <a th:href="@{/deletepart(partID=${tempPart.id})}" class="btn btn-primary btn-sm mb-3"
-                   onclick="if(!(confirm('Are you sure you want to delete this part?')))return false">Delete</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <br>
-    <h2>Tower</h2>
-    <form th:action="@{/mainscreen}">
-        Filter: <input type="text" name="productkeyword" id="productkeyword" size="50" th:value="${productkeyword}" required />
-        &nbsp;
-        <input type="submit" value="Search" />
-        &nbsp;
-        <input type="button" value="Clear" id="btnClearProduct" onclick="clearSearch()" />
-    </form>
-    <script type="text/javascript">
-        function clearSearch() {
-            window.location = "[[@{/mainscreen}]]";
-        }
-    </script>
-    <br><br>
-    <a th:href="@{/showFormAddProduct}" class="btn btn-primary btn-sm mb-3">Add Product</a>
-    <table class="table table-bordered table-striped">
-        <thead class="thead-dark">
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Inventory</th>
-            <th>Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="tempProduct : ${products}">
-            <td th:text="${tempProduct.name}">1</td>
-            <td th:text="${tempProduct.price}">1</td>
-            <td th:text="${tempProduct.inv}">1</td>
-            <td><a th:href="@{/showProductFormForUpdate(productID=${tempProduct.id})}" class="btn btn-primary btn-sm mb-3">Update</a>
-                <a th:href="@{/deleteproduct(productID=${tempProduct.id})}" class="btn btn-primary btn-sm mb-3"
-                   onclick="if(!(confirm('Are you sure you want to delete this product?')))return false">Delete</a>
-                <a th:href="@{/buyProduct(productID=${tempProduct.id})}" class="btn btn-primary btn-sm mb-3">Sell</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <span><i class="bi bi-cpu"></i> Components</span>
+            <div>
+                <a th:href="@{/showFormAddInPart}" class="btn btn-success btn-sm">+ Inhouse Part</a>
+                <a th:href="@{/showFormAddOutPart}" class="btn btn-outline-success btn-sm">+ Outsourced Part</a>
+            </div>
+        </div>
+        <div class="card-body">
+            <form th:action="@{/mainscreen}" class="row g-3 mb-4">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-text bg-white">Filter</span>
+                        <input type="text" name="partkeyword" id="partkeyword" class="form-control"
+                               placeholder="Search parts..." th:value="${partkeyword}" required />
+                        <button class="btn btn-primary" type="submit">Search</button>
+                        <button class="btn btn-outline-secondary" type="button" onclick="clearSearch()">Clear</button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered align-middle">
+                    <thead class="table-light">
+                    <tr>
+                        <th>Parts Name</th>
+                        <th class="text-center">Price</th>
+                        <th class="text-center">Inventory</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="tempPart : ${parts}">
+                        <td class="fw-bold" th:text="${tempPart.name}">Name</td>
+                        <td th:text="${#numbers.formatCurrency(tempPart.price)}" style="text-align: right;">$1.00</td>
+                        <td>
+                            <span th:class="${tempPart.inv < 5} ? 'badge bg-danger' : 'badge bg-info text-dark'"
+                                  th:text="${tempPart.inv}">0</span>
+                        </td>
+                        <td>
+                            <a th:href="@{/showPartFormForUpdate(partID=${tempPart.id})}" class="btn btn-outline-primary btn-sm btn-action">Edit</a>
+                            <a th:href="@{/deletepart(partID=${tempPart.id})}" class="btn btn-outline-danger btn-sm"
+                               onclick="if(!(confirm('Are you sure?')))return false">Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <span>Tower</span>
+            <a th:href="@{/showFormAddProduct}" class="btn btn-primary btn-sm">+ Add Product</a>
+        </div>
+        <div class="card-body">
+            <form th:action="@{/mainscreen}" class="row g-3 mb-4">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-text bg-white">Filter</span>
+                        <input type="text" name="productkeyword" id="productkeyword" class="form-control"
+                               placeholder="Search products..." th:value="${productkeyword}" required />
+                        <button class="btn btn-primary" type="submit">Search</button>
+                        <button class="btn btn-outline-secondary" type="button" onclick="clearSearch()">Clear</button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered align-middle">
+                    <thead class="table-light">
+                    <tr>
+                        <th>Product Name</th>
+                        <th class="text-center">Price</th>
+                        <th class="text-center">Inventory</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="tempProduct : ${products}">
+                        <td class="fw-bold text-primary" th:text="${tempProduct.name}">Name</td>
+                        <td th:text="${#numbers.formatCurrency(tempProduct.price)}" style="text-align: right;">$1.00</td>
+                        <td th:text="${tempProduct.inv}">1</td>
+                        <td class=>
+                            <a th:href="@{/buyProduct(productID=${tempProduct.id})}" class="btn btn-warning btn-sm btn-action fw-bold">Sell Now</a>
+                            <a th:href="@{/showProductFormForUpdate(productID=${tempProduct.id})}" class="btn btn-light btn-sm btn-action border">Update</a>
+                            <a th:href="@{/deleteproduct(productID=${tempProduct.id})}" class="btn btn-outline-danger btn-sm"
+                               onclick="if(!(confirm('Are you sure?')))return false">Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
+
+<script type="text/javascript">
+    function clearSearch() {
+        window.location = "[[@{/mainscreen}]]";
+    }
+</script>
+
 </body>
 </html>
