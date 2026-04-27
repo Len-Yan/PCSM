@@ -42,7 +42,10 @@
 
 <div class="container">
   <div class="timestamp" style="font-size: larger;">Report Generated on: <span id="datetime"></span></div>
-<h2>Product sale</h2>
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Product sale</h2>
+      <a th:href="@{/api/reports/sales}" class="btn btn-primary btn-sm">Report: REST API</a>
+  </div>
 <table class="table table-bordered table-striped">
   <thead>
   <tr>
