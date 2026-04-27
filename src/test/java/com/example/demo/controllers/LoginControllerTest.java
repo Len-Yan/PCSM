@@ -1,17 +1,17 @@
 package com.example.demo.controllers;
 
-import org.junit.*;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LoginControllerTest {
 
   private LoginController loginController;
 
-  @Before
+  @BeforeEach
   public void setup() {
     loginController = new LoginController();
   }

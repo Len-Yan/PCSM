@@ -1,17 +1,17 @@
 package com.example.demo.domain;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Date;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class ReportItemTest {
 
   private ReportItem reportItem;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     // Initialize a ReportItem object with sample data
     reportItem = new ReportItem(1L, "Item A", 100, 50, 500.0, new Date());

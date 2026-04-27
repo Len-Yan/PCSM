@@ -46,7 +46,6 @@ public class BootStrapData implements CommandLineRunner {
         gpu1.setName("RTX 4090");
         gpu1.setInv(3);
         gpu1.setPrice(1500.0);
-        gpu1.setId(9002);
         gpu1.setMinInv(0);
         gpu1.setMaxInv(5);
 
@@ -55,7 +54,6 @@ public class BootStrapData implements CommandLineRunner {
         gpu2.setName("RTX 4070");
         gpu2.setInv(5);
         gpu2.setPrice(600.0);
-        gpu2.setId(9001);
         gpu2.setMinInv(0);
         gpu2.setMaxInv(10);
 
@@ -64,25 +62,22 @@ public class BootStrapData implements CommandLineRunner {
         motherboard1.setName("B550");
         motherboard1.setInv(10);
         motherboard1.setPrice(150.0);
-        motherboard1.setId(2001);
-        gpu1.setMinInv(0);
-        gpu1.setMaxInv(20);
+        motherboard1.setMinInv(0);
+        motherboard1.setMaxInv(20);
 
         OutsourcedPart motherboard2= new OutsourcedPart();
         motherboard2.setCompanyName("MSI");
         motherboard2.setName("B650");
         motherboard2.setInv(5);
         motherboard2.setPrice(250.0);
-        motherboard2.setId(2002);
-        gpu2.setMinInv(0);
-        gpu2.setMaxInv(10);
+        motherboard2.setMinInv(0);
+        motherboard2.setMaxInv(10);
 
         OutsourcedPart harddrive1= new OutsourcedPart();
         harddrive1.setCompanyName("Western Digital");
         harddrive1.setName("SN 750 1TB");
         harddrive1.setInv(20);
         harddrive1.setPrice(60.0);
-        harddrive1.setId(4001);
         harddrive1.setMinInv(0);
         harddrive1.setMaxInv(50);
 
